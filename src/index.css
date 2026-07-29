@@ -5,3 +5,13 @@
   --color-main: #1c4d8d;
   --color-secondary: #3858c4;
 }
+@utility flex-center {
+  @apply flex justify-center items-center;
+}
+html,
+body {
+  scroll-behavior: smooth;
+}
+li {
+  list-style-type: none;
+}
