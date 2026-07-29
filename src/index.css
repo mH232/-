@@ -19,3 +19,12 @@ body {
 li {
   list-style-type: none;
 }
+label {
+  color: #1c4d8d;
+}
+input,
+textarea {
+  border: 1px solid black;
+  border-radius: 30px;
+  padding: 15px;
+}
