@@ -8,6 +8,10 @@
 @utility flex-center {
   @apply flex justify-center items-center;
 }
+@utility main-section {
+  @apply bg-white h-screen;
+}
+
 html,
 body {
   scroll-behavior: smooth;

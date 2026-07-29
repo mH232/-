@@ -25,21 +25,21 @@ function Header() {
     <header className="sticky top-4 z-50">
       <main className="navbar mx-auto w-[90%] max-w-7xl rounded-2xl border border-white/6">
         <div className="flex items-center justify-between px-6 py-4 ">
-          <Link
-            to={"/login"}
-            className="login-button cursor-pointer bg-secondary text-white w-35 h-13.75 rounded-[10px] flex-center text-xl"
-          >
-            تسجيل الدخول
-          </Link>
-          <nav className="flex gap-8 text-secondary text-xl">
+          <div className="logo text-4xl font-bold text-main">عَدْل</div>
+
+          <nav className="flex gap-8 text-secondary text-2xl">
             {navLinks.map((link) => (
               <li key={link.id}>
                 <a href={`#${link.id}`}>{link.title}</a>
               </li>
             ))}
           </nav>
-
-          <div className="logo text-4xl font-bold text-main">عَدْل</div>
+          <Link
+            to={"/login"}
+            className="login-button cursor-pointer bg-secondary text-white w-35 h-13.75 rounded-[10px] flex-center text-xl"
+          >
+            تسجيل الدخول
+          </Link>
         </div>
       </main>
     </header>

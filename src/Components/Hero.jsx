@@ -15,14 +15,21 @@ function Hero() {
   });
 
   return (
-    <div className=" h-screen flex-center">
-      <div className="mx-auto w-[90%] max-w-7xl flex justify-between items-center">
-        <img src="../../src/assets/LandingPage.png" alt="Landing Page Image" />
-        <p dir="rtl" className="txt text-5xl leading-16 text-main">
+    <div
+      id="about"
+      className="h-screen flex-center bg-linear-to-br from-[#EEF5FF] to-[#B4D4FF]"
+    >
+      <div className="mx-auto w-[90%] max-w-7xl flex items-center justify-center lg:justify-between">
+        <p className="txt text-5xl leading-16 text-main">
           رؤية شاملة لمؤشرات الأداء
           <br />
           لدعم قرارات مالية أكثر كفاءة
         </p>
+        <img
+          src="../../src/assets/LandingPage.png"
+          alt="Landing Page Image"
+          className="hidden lg:block"
+        />
       </div>
     </div>
   );
