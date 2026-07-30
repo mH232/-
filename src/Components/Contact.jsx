@@ -47,8 +47,8 @@ function Contact() {
           />
         </div>
       </div>
-      <div className="img w-100 h-100 ">
-        <img src={ContactImg} alt="" />
+      <div className="img w-100 h-100 hidden lg:block">
+        <img src={ContactImg} alt="contact image" />
       </div>
     </div>
   );
