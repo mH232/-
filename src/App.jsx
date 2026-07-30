@@ -5,15 +5,11 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-// Components
-import Header from "./Components/Header";
-import Hero from "./Components/Hero";
-import { Services } from "./Components/Services";
 
 function App() {
   return (
     // bg-linear-to-br from-[#EEF5FF] to-[#B4D4FF]
-    <div className="h-[5000px] ">
+    <div className="">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
