@@ -1,4 +1,4 @@
-import Header from "../Components/Header";
+import Header from "../Components/Headers/Header";
 import Hero from "../Components/Hero";
 import { Services } from "../Components/Services";
 import Contact from "../Components/Contact";
@@ -7,6 +7,7 @@ function Home() {
   return (
     <div className="bg-linear-to-br from-[#EEF5FF] to-[#B4D4FF]">
       <Header />
+      {/* <Header /> */}
       <Hero />
       <Services />
       <Contact />

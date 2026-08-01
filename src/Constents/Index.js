@@ -12,3 +12,17 @@ export const navLinks = [
     title: "تواصل معنا",
   },
 ];
+export const navLinksUser = [
+  {
+    id: "home",
+    title: "الصفحة الرئيسية",
+  },
+  {
+    id: "requests",
+    title: "عرض الطلبات",
+  },
+  {
+    id: "indicators",
+    title: "مؤشرات الأداء",
+  },
+];

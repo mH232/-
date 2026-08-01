@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
-import { navLinks } from "../Constents/Index";
+import { navLinks } from "../../Constents/Index";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 function Header() {
   useGSAP(() => {
     const navTween = gsap.timeline({
       scrollTrigger: {
-        trigger: "main",
+        trigger: ".navbar",
         start: "bottom top",
       },
     });
     navTween.fromTo(
-      "main",
+      ".navbar",
       { backgroundColor: "transparent" },
       {
         backgroundColor: "#00000020",

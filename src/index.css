@@ -9,7 +9,7 @@
   @apply flex justify-center items-center;
 }
 @utility main-section {
-  @apply bg-white h-screen;
+  @apply bg-slate-50 h-screen;
 }
 
 html,
