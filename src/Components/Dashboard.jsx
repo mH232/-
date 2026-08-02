@@ -43,7 +43,7 @@ const Dashboard = () => {
   });
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans" dir="rtl">
+    <div className="min-h-screen bg-slate-50 font-sans">
       <HeaderUser />
       <main className="max-w-7xl mx-auto px-6 py-8">
         <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-4 mb-10">
@@ -66,7 +66,7 @@ const Dashboard = () => {
             })}
           </div>
 
-          <div className="relative w-full md:w-80">
+          <div className="relative w-full md:w-80 flex">
             <input
               type="text"
               placeholder="رقم البلاغ أو اسمه"
@@ -74,13 +74,14 @@ const Dashboard = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-[#EFEFEF] text-gray-700 placeholder-gray-400 pl-4 pr-10 py-2.5 rounded-full text-sm outline-none focus:ring-2 focus:ring-[#3B82F6]/50 transition-all text-right"
             />
-            <FiSearch className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-lg pointer-events-none" />
+            <FiSearch className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-lg pointer-events-none" />
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredRequests.map((item) => (
             <Request
+              id={item.id}
               purpose={item.purpose}
               requestNo={item.requestNo}
               data={item.date}

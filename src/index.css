@@ -28,3 +28,11 @@ textarea {
   border-radius: 30px;
   padding: 15px;
 }
+h2 {
+  color: #3858c4;
+  text-align: right;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}

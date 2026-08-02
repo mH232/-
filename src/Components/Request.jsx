@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { db } from "../Config/Firebase";
-import { collection, getDocs } from "firebase/firestore";
-
+import { useNavigate } from "react-router-dom";
 const Request = (props) => {
+  const navigate = useNavigate();
+  console.log(props.id);
   return (
     <div
       key={props.id}
+      onClick={() => navigate(`/dashboard/details/${props.id}`)}
       className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col gap-3 transition-all hover:shadow-md hover:cursor-pointer"
     >
       <div className="flex items-center justify-between text-sm">
