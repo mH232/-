@@ -33,7 +33,7 @@ export const Auth = () => {
         تسجيل الدخول
       </div>
 
-      <div className="mt-6 flex flex-col gap-5" dir="rtl">
+      <div className="mt-6 flex flex-col gap-5">
         <div>
           <input
             type="email"

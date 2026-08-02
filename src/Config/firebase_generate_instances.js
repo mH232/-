@@ -35,10 +35,14 @@ const purposes = [
   "أعمال تصريف مياه الأمطار",
 ];
 
-function randomItem(array) {
+const priorities = ["عاجل", "عاجل جدا", "مهم", "متوسط", "غير ضروري"];
+
+const names = ["محمد", "عبدالله", "صلاح", "حسين", "مراد", "نورة"];
+
+// Functions
+function random(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
-
 function randomBudget() {
   return Math.floor(Math.random() * (1000000 - 10000 + 1)) + 10000;
 }
@@ -55,11 +59,16 @@ async function createRequests() {
 
     batch.set(newDoc, {
       Date: randomDate(new Date("2025-01-01"), new Date()),
-      municipalityId: randomItem(municipalities).id,
-      purpose: randomItem(purposes),
+      municipalityId: random(municipalities).id,
+      purpose: random(purposes),
       requestNo: `req${String(i).padStart(3, "0")}`,
       requestedBudget: randomBudget(),
-      status: randomItem(statuses),
+      status: random(statuses),
+      priority: random(priorities),
+      person: random(names),
+      reason: "زيادة البلاغات من قبل السكان",
+      notes: "لاتوجد ملاحظات",
+      attachments: [{ name: "report.pdf" }, { name: "photo.jpg" }],
     });
   }
 
