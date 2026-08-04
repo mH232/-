@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import { navLinksUser } from "../../Constents/Index";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useNavigate } from "react-router-dom";
 function HeaderUser() {
+  const navigate = useNavigate();
   useGSAP(() => {
     gsap.to(".navbar", {
       backgroundColor: "#00000020",
@@ -25,8 +27,13 @@ function HeaderUser() {
 
           <nav className="flex gap-8 text-secondary text-2xl">
             {navLinksUser.map((link) => (
-              <li key={link.id}>
-                <a href={`#${link.id}`}>{link.title}</a>
+              <li
+                key={link.id}
+                onClick={() => {
+                  navigate(`/${link.navigate}`);
+                }}
+              >
+                <a className="cursor-pointer">{link.title}</a>
               </li>
             ))}
           </nav>

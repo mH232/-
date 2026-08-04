@@ -83,7 +83,7 @@ function NotFound() {
 
       {/* Action Button */}
       <Link
-        to="/"
+        to="/dashboard"
         className="bg-secondary hover:bg-main text-white font-semibold py-3 px-8 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
       >
         العودة للرئيسية
