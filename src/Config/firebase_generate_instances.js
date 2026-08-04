@@ -54,7 +54,7 @@ function randomDate(start, end) {
 async function createRequests() {
   const batch = writeBatch(db);
   const requestsRef = collection(db, "request");
-  for (let i = 1; i <= 100; i++) {
+  for (let i = 1; i <= 5; i++) {
     const newDoc = doc(requestsRef);
 
     batch.set(newDoc, {
