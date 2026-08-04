@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderUser from "../Headers/HeaderUser";
 import ProgressBar from "./ProgressBar";
+import { useRequest } from "../RequestContext";
 
 function FirstStep() {
   const navigate = useNavigate();
 
-  const [suggestion, setSuggestion] = useState("");
-  const [department, setDepartment] = useState("");
+  const { formData, setFormData } = useRequest();
 
   const [errors, setErrors] = useState({
     suggestion: "",
@@ -20,15 +20,15 @@ function FirstStep() {
     // Arabic + English letters + spaces only
     const textRegex = /^[\u0600-\u06FFa-zA-Z\s]+$/;
 
-    if (!suggestion.trim()) {
+    if (!formData.suggestion.trim()) {
       newErrors.suggestion = "يرجى إدخال نوع الطلب";
-    } else if (!textRegex.test(suggestion.trim())) {
+    } else if (!textRegex.test(formData.suggestion.trim())) {
       newErrors.suggestion = "يسمح بالحروف فقط";
     }
 
-    if (!department.trim()) {
+    if (!formData.department.trim()) {
       newErrors.department = "يرجى إدخال الإدارة";
-    } else if (!textRegex.test(department.trim())) {
+    } else if (!textRegex.test(formData.department.trim())) {
       newErrors.department = "يسمح بالحروف فقط";
     }
 
@@ -64,9 +64,12 @@ function FirstStep() {
                 className={`w-full bg-slate-100 border rounded-lg px-4 py-3 focus:outline-none ${
                   errors.suggestion ? "border-red-500" : "border-transparent"
                 }`}
-                value={suggestion}
+                value={formData.suggestion}
                 onChange={(e) => {
-                  setSuggestion(e.target.value);
+                  setFormData({
+                    ...formData,
+                    suggestion: e.target.value,
+                  });
 
                   if (errors.suggestion) {
                     setErrors((prev) => ({
@@ -93,7 +96,10 @@ function FirstStep() {
                     type="button"
                     className="px-7 py-2 rounded-xl bg-slate-100 text-main hover:bg-main hover:text-white transition"
                     onClick={() => {
-                      setSuggestion(item);
+                      setFormData({
+                        ...formData,
+                        suggestion: item,
+                      });
 
                       setErrors((prev) => ({
                         ...prev,
@@ -117,9 +123,12 @@ function FirstStep() {
                 className={`w-full bg-slate-100 border rounded-lg px-4 py-3 focus:outline-none ${
                   errors.department ? "border-red-500" : "border-transparent"
                 }`}
-                value={department}
+                value={formData.department}
                 onChange={(e) => {
-                  setDepartment(e.target.value);
+                  setFormData({
+                    ...formData,
+                    department: e.target.value,
+                  });
 
                   if (errors.department) {
                     setErrors((prev) => ({
