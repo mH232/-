@@ -4,6 +4,9 @@ import { collection, getDocs } from "firebase/firestore";
 import HeaderUser from "./Headers/HeaderUser";
 import { FiSearch } from "react-icons/fi";
 import Request from "./Request";
+// For fetching the logged in user in order for displaying the relevant data (requests)
+import { auth } from "../Config/Firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 const filterOptions = [
   { label: "الكل", value: "الكل" },
@@ -16,7 +19,7 @@ const Dashboard = () => {
   const [activeFilter, setActiveFilter] = useState("الكل");
   const [searchQuery, setSearchQuery] = useState("");
   const [requests, setRequests] = useState([]);
-
+  const [user, setUser] = useState(null);
   useEffect(() => {
     const getRequestsList = async () => {
       try {
@@ -33,6 +36,18 @@ const Dashboard = () => {
     getRequestsList();
   }, []);
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.log("Current user:", currentUser);
+      setUser(currentUser);
+    });
+
+    return unsubscribe;
+  }, []);
+
+  useEffect(() => {
+    console.log("User state changed:", user);
+  }, [user]);
   const filteredRequests = requests.filter((item) => {
     const matchesFilter =
       activeFilter === "الكل" || item.status === activeFilter;

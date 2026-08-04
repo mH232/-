@@ -1,5 +1,5 @@
 import { auth, googleProvider } from "./Firebase";
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
@@ -11,10 +11,12 @@ export const Auth = () => {
 
   const signIn = async () => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
       navigate("/dashboard");
     } catch (err) {
       console.error(err);
+      console.log(err.message);
+      console.log(err.code);
     }
   };
 

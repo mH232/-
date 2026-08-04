@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 const Request = (props) => {
   const navigate = useNavigate();
-  console.log(props.id);
   return (
     <div
       key={props.id}

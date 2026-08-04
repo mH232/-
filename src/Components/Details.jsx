@@ -35,7 +35,7 @@ function Details() {
   }, [id]);
 
   return (
-    <div className="main-section">
+    <div className="main-section h-[120vh]">
       <HeaderUser />
 
       <main className="max-w-6xl mx-auto py-10 px-6">
@@ -61,7 +61,7 @@ function Details() {
             {/* Attachments */}
             <section>
               <h2>المرفقات</h2>
-              <div className="space-y-5 text-secondary underline">
+              <div className=" text-secondary underline flex flex-col">
                 <a href="#">دراسة الاحتياج.pdf</a>
                 <a href="#">تقرير.pdf</a>
                 <a href="#">صورة الموقع.jpg</a>

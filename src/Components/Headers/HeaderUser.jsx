@@ -31,10 +31,10 @@ function HeaderUser() {
             ))}
           </nav>
           <Link
-            to={"/login"}
+            to={"/newRequest/firstStep"}
             className="login-button cursor-pointer bg-secondary text-white w-35 h-13.75 rounded-[10px] flex-center text-xl"
           >
-            تسجيل الدخول
+            طلب جديد
           </Link>
         </div>
       </main>
