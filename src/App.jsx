@@ -13,7 +13,7 @@ import FirstStep from "./Components/NewRequest/FirstStep";
 import SecondStep from "./Components/NewRequest/SecondStep";
 import ThirdStep from "./Components/NewRequest/ThirdStep";
 import FinalStep from "./Components/NewRequest/FinalStep";
-
+import KPI from "./Components/KPI";
 function App() {
   return (
     <div className="">
@@ -21,6 +21,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/kpi" element={<KPI />} />
         <Route path="/dashboard/details/:id" element={<Details />} />
         <Route path="/newRequest/firstStep" element={<FirstStep />} />
         <Route path="/newRequest/secondStep" element={<SecondStep />} />

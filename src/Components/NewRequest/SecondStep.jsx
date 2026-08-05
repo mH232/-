@@ -5,14 +5,11 @@ import { useNavigate } from "react-router-dom";
 // Components
 import ProgressBar from "./ProgressBar";
 import HeaderUser from "../Headers/HeaderUser";
+import { useRequest } from "../RequestContext";
 
 function SecondStep() {
   const navigate = useNavigate();
-
-  const [budget, setBudget] = useState("");
-  const [priority, setPriority] = useState("");
-  const [attachment, setAttachment] = useState(null);
-
+  const { formData, setFormData } = useRequest();
   const [errors, setErrors] = useState({
     budget: "",
     priority: "",
@@ -21,13 +18,13 @@ function SecondStep() {
   const validate = () => {
     const newErrors = {};
 
-    if (!budget.trim()) {
+    if (!formData.budget.trim()) {
       newErrors.budget = "يرجى إدخال المبلغ المطلوب";
-    } else if (Number(budget) <= 0) {
+    } else if (Number(formData.budget) <= 0) {
       newErrors.budget = "يجب أن يكون المبلغ أكبر من صفر";
     }
 
-    if (!priority) {
+    if (!formData.priority) {
       newErrors.priority = "يرجى اختيار أولوية الطلب";
     }
     // This is only if I want the attachment to be required
@@ -65,9 +62,12 @@ function SecondStep() {
                 type="number"
                 min="1000"
                 placeholder="مبلغ الميزانية المطلوب"
-                value={budget}
+                value={formData.budget}
                 onChange={(e) => {
-                  setBudget(e.target.value);
+                  setFormData({
+                    ...formData,
+                    budget: e.target.value,
+                  });
 
                   if (errors.budget) {
                     setErrors((prev) => ({
@@ -75,7 +75,6 @@ function SecondStep() {
                       budget: "",
                     }));
                   }
-                  //
                 }}
                 onKeyDown={(e) => {
                   if (["e", "E", "+", "-"].includes(e.key)) {
@@ -98,9 +97,12 @@ function SecondStep() {
 
               <div className="relative">
                 <select
-                  value={priority}
+                  value={formData.priority}
                   onChange={(e) => {
-                    setPriority(e.target.value);
+                    setFormData({
+                      ...formData,
+                      priority: e.target.value,
+                    });
 
                     if (errors.priority) {
                       setErrors((prev) => ({
@@ -141,17 +143,17 @@ function SecondStep() {
               >
                 <Upload size={38} className="text-main mb-3" />
 
-                <span className="text-main text-lg">
-                  {attachment ? attachment.name : "اضغط لرفع الملفات"}
-                </span>
+                <span className="text-main text-lg">{formData.attachment}</span>
 
                 <input
                   id="attachment"
                   type="file"
                   className="hidden"
                   onChange={(e) => {
-                    const file = e.target.files[0];
-                    setAttachment(file);
+                    setFormData({
+                      ...formData,
+                      attachment: e.target.value,
+                    });
 
                     if (errors.attachment) {
                       setErrors((prev) => ({

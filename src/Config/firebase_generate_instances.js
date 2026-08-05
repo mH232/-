@@ -61,7 +61,7 @@ async function createRequests() {
       Date: randomDate(new Date("2025-01-01"), new Date()),
       municipalityId: random(municipalities).id,
       purpose: random(purposes),
-      requestNo: `req${String(i).padStart(3, "0")}`,
+      requestNo: Date.now(),
       requestedBudget: randomBudget(),
       status: random(statuses),
       priority: random(priorities),

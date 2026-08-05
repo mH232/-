@@ -26,6 +26,6 @@ export const navLinksUser = [
   {
     id: "indicators",
     title: "مؤشرات الأداء",
-    navigate: "/kpis",
+    navigate: "/kpi",
   },
 ];

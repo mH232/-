@@ -9,6 +9,8 @@ export function RequestProvider({ children }) {
     budget: "",
     priority: "",
     attachment: null,
+    reason: "",
+    attachment: [],
   });
 
   const updateForm = (field, value) => {

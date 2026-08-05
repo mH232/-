@@ -6,12 +6,10 @@ import { useRequest } from "../RequestContext";
 
 function FirstStep() {
   const navigate = useNavigate();
-
   const { formData, setFormData } = useRequest();
-
   const [errors, setErrors] = useState({
     suggestion: "",
-    department: "",
+    reason: "",
   });
 
   const validate = () => {
@@ -26,10 +24,10 @@ function FirstStep() {
       newErrors.suggestion = "يسمح بالحروف فقط";
     }
 
-    if (!formData.department.trim()) {
-      newErrors.department = "يرجى إدخال الإدارة";
-    } else if (!textRegex.test(formData.department.trim())) {
-      newErrors.department = "يسمح بالحروف فقط";
+    if (!formData.reason.trim()) {
+      newErrors.reason = "يرجى إدخال السبب";
+    } else if (!textRegex.test(formData.reason.trim())) {
+      newErrors.reason = "يسمح بالحروف فقط";
     }
 
     setErrors(newErrors);
@@ -113,35 +111,62 @@ function FirstStep() {
               </div>
             </div>
 
-            {/* Department */}
+            {/* reason */}
             <div>
-              <label className="block text-xl mb-3">الإدارة</label>
+              <label className="block text-xl mb-3">السبب</label>
 
               <input
                 type="text"
-                placeholder="الإدارة"
+                placeholder="السبب"
                 className={`w-full bg-slate-100 border rounded-lg px-4 py-3 focus:outline-none ${
-                  errors.department ? "border-red-500" : "border-transparent"
+                  errors.reason ? "border-red-500" : "border-transparent"
                 }`}
-                value={formData.department}
+                value={formData.reason}
                 onChange={(e) => {
                   setFormData({
                     ...formData,
-                    department: e.target.value,
+                    reason: e.target.value,
                   });
 
-                  if (errors.department) {
+                  if (errors.reason) {
                     setErrors((prev) => ({
                       ...prev,
-                      department: "",
+                      reason: "",
                     }));
                   }
                 }}
               />
 
-              {errors.department && (
-                <p className="text-red-500 text-sm mt-2">{errors.department}</p>
+              {errors.reason && (
+                <p className="text-red-500 text-sm mt-2">{errors.reason}</p>
               )}
+            </div>
+            {/* Suggestions */}
+            <div>
+              <label className="block text-xl mb-4">اقتراحات</label>
+
+              <div className="flex justify-start gap-4 flex-wrap">
+                {["كثرة بلاغات السكان", "احتياج المنطقة"].map((item) => (
+                  <button
+                    key={item}
+                    type="button"
+                    className="px-7 py-2 rounded-xl bg-slate-100 text-main hover:bg-main hover:text-white transition"
+                    onClick={() => {
+                      setFormData({
+                        ...formData,
+                        reason: item,
+                      });
+
+                      setErrors((prev) => ({
+                        ...prev,
+                        reason: "",
+                      }));
+                    }}
+                  >
+                    {item}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>

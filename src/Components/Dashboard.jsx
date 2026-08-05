@@ -51,11 +51,17 @@ const Dashboard = () => {
   const filteredRequests = requests.filter((item) => {
     const matchesFilter =
       activeFilter === "الكل" || item.status === activeFilter;
+
     const matchesSearch =
-      item.requestNo.includes(searchQuery) ||
-      item.purpose.includes(searchQuery);
+      String(item.requestNo ?? "")
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase()) ||
+      String(item.purpose ?? "")
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
     return matchesFilter && matchesSearch;
   });
+  // console.log(filteredRequests);
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
@@ -97,9 +103,10 @@ const Dashboard = () => {
           {filteredRequests.map((item) => (
             <Request
               id={item.id}
+              key={item.id}
               purpose={item.purpose}
               requestNo={item.requestNo}
-              data={item.date}
+              date={item.Date?.toDate().toLocaleDateString("ar-SA")}
               status={item.status}
             />
           ))}

@@ -2,10 +2,35 @@ import HeaderUser from "../Headers/HeaderUser";
 import ProgressBar from "./ProgressBar";
 import { useNavigate } from "react-router-dom";
 import { useRequest } from "../RequestContext";
+import { db } from "../../Config/Firebase";
+
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 function ThirdStep() {
   const navigate = useNavigate();
   const { formData } = useRequest();
+
+  const handleSubmit = async () => {
+    try {
+      await addDoc(collection(db, "request"), {
+        requestNo: `${Date.now()}`,
+        purpose: formData.suggestion,
+        requestedBudget: Number(formData.budget),
+        priority: formData.priority,
+        reason: formData.reason,
+        notes: "",
+        person: "محمد",
+        status: "قيد المراجعة",
+        Date: serverTimestamp(),
+      });
+
+      console.log("Request saved successfully!");
+      navigate("/newRequest/finalStep");
+    } catch (error) {
+      console.error("Error saving request:", error);
+      console.log(error.message);
+    }
+  };
 
   return (
     <div className="bg-slate-50">
@@ -27,12 +52,8 @@ function ThirdStep() {
                   </p>
                 </div>
                 <div className="text-center">
-                  <h3 className="text-main text-3xl font-medium mb-8">
-                    الإدارة
-                  </h3>
-                  <p className="text-main text-2xl">
-                    {formData.department || "-"}
-                  </p>
+                  <h3 className="text-main text-3xl font-medium mb-8">السبب</h3>
+                  <p className="text-main text-2xl">{formData.reason || "-"}</p>
                 </div>
                 <div className="text-center">
                   <h3 className="text-main text-3xl font-medium mb-8">
@@ -87,7 +108,7 @@ function ThirdStep() {
           </button>
           <button
             className="bg-secondary text-white px-8 py-3 rounded-2xl hover:opacity-90 transition"
-            onClick={() => navigate("/newRequest/finalStep")}
+            onClick={handleSubmit}
           >
             إنهاء
           </button>
